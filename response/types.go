@@ -667,10 +667,10 @@ type ExploreItem struct {
 		ChannelType string `json:"channel_type"`
 		Context     string `json:"context"`
 		Header      string `json:"header"`
-		Media       struct {
+		Media struct {
 			Algorithm     string `json:"algorithm"`
 			CanViewerSave bool   `json:"can_viewer_save"`
-			Caption       struct {
+			Caption struct {
 				BitFlags        int64  `json:"bit_flags"`
 				ContentType     string `json:"content_type"`
 				CreatedAt       int64  `json:"created_at"`
@@ -682,7 +682,7 @@ type ExploreItem struct {
 				Status          string `json:"status"`
 				Text            string `json:"text"`
 				Type            int64  `json:"type"`
-				User            struct {
+				User struct {
 					FriendshipStatus struct {
 						Following       bool `json:"following"`
 						IsBestie        bool `json:"is_bestie"`
@@ -709,7 +709,7 @@ type ExploreItem struct {
 			CommentLikesEnabled     bool   `json:"comment_likes_enabled"`
 			CommentThreadingEnabled bool   `json:"comment_threading_enabled"`
 			DeviceTimestamp         int64  `json:"device_timestamp"`
-			Explore                 struct {
+			Explore struct {
 				ActorID     int64  `json:"actor_id"`
 				Explanation string `json:"explanation"`
 				SourceToken string `json:"source_token"`
@@ -721,7 +721,7 @@ type ExploreItem struct {
 			HasLiked           bool   `json:"has_liked"`
 			HasMoreComments    bool   `json:"has_more_comments"`
 			ID                 string `json:"id"`
-			ImageVersions2     struct {
+			ImageVersions2 struct {
 				Candidates []struct {
 					Height int64  `json:"height"`
 					URL    string `json:"url"`
@@ -733,7 +733,7 @@ type ExploreItem struct {
 			Lat             float64 `json:"lat"`
 			LikeCount       int64   `json:"like_count"`
 			Lng             float64 `json:"lng"`
-			Location        struct {
+			Location struct {
 				Address          string  `json:"address"`
 				City             string  `json:"city"`
 				ExternalSource   string  `json:"external_source"`
@@ -753,7 +753,7 @@ type ExploreItem struct {
 			OriginalWidth                int64  `json:"original_width"`
 			PhotoOfYou                   bool   `json:"photo_of_you"`
 			Pk                           int64  `json:"pk"`
-			PreviewComments              []struct {
+			PreviewComments []struct {
 				BitFlags        int64  `json:"bit_flags"`
 				ContentType     string `json:"content_type"`
 				CreatedAt       int64  `json:"created_at"`
@@ -765,7 +765,7 @@ type ExploreItem struct {
 				Status          string `json:"status"`
 				Text            string `json:"text"`
 				Type            int64  `json:"type"`
-				User            struct {
+				User struct {
 					FullName      string `json:"full_name"`
 					IsPrivate     bool   `json:"is_private"`
 					IsVerified    bool   `json:"is_verified"`
@@ -777,7 +777,7 @@ type ExploreItem struct {
 				UserID int64 `json:"user_id"`
 			} `json:"preview_comments"`
 			TakenAt int64 `json:"taken_at"`
-			User    struct {
+			User struct {
 				FriendshipStatus struct {
 					Following       bool `json:"following"`
 					IsBestie        bool `json:"is_bestie"`
@@ -797,7 +797,7 @@ type ExploreItem struct {
 			} `json:"user"`
 			VideoDashManifest string  `json:"video_dash_manifest"`
 			VideoDuration     float64 `json:"video_duration"`
-			VideoVersions     []struct {
+			VideoVersions []struct {
 				Height int64  `json:"height"`
 				ID     string `json:"id"`
 				Type   int64  `json:"type"`
@@ -818,7 +818,7 @@ type ExploreItem struct {
 	Media struct {
 		Algorithm     string `json:"algorithm"`
 		CanViewerSave bool   `json:"can_viewer_save"`
-		Caption       struct {
+		Caption struct {
 			BitFlags        int64  `json:"bit_flags"`
 			ContentType     string `json:"content_type"`
 			CreatedAt       int64  `json:"created_at"`
@@ -830,7 +830,7 @@ type ExploreItem struct {
 			Status          string `json:"status"`
 			Text            string `json:"text"`
 			Type            int64  `json:"type"`
-			User            struct {
+			User struct {
 				FriendshipStatus struct {
 					Following       bool `json:"following"`
 					IsBestie        bool `json:"is_bestie"`
@@ -851,10 +851,10 @@ type ExploreItem struct {
 			UserID int64 `json:"user_id"`
 		} `json:"caption"`
 		CaptionIsEdited bool `json:"caption_is_edited"`
-		CarouselMedia   []struct {
+		CarouselMedia []struct {
 			CarouselParentID string `json:"carousel_parent_id"`
 			ID               string `json:"id"`
-			ImageVersions2   struct {
+			ImageVersions2 struct {
 				Candidates []struct {
 					Height int64  `json:"height"`
 					URL    string `json:"url"`
@@ -872,7 +872,7 @@ type ExploreItem struct {
 		CommentLikesEnabled     bool   `json:"comment_likes_enabled"`
 		CommentThreadingEnabled bool   `json:"comment_threading_enabled"`
 		DeviceTimestamp         int64  `json:"device_timestamp"`
-		Explore                 struct {
+		Explore struct {
 			ActorID     int64  `json:"actor_id"`
 			Explanation string `json:"explanation"`
 			SourceToken string `json:"source_token"`
@@ -884,7 +884,7 @@ type ExploreItem struct {
 		HasLiked           bool   `json:"has_liked"`
 		HasMoreComments    bool   `json:"has_more_comments"`
 		ID                 string `json:"id"`
-		ImageVersions2     struct {
+		ImageVersions2 struct {
 			Candidates []struct {
 				Height int64  `json:"height"`
 				URL    string `json:"url"`
@@ -895,7 +895,7 @@ type ExploreItem struct {
 		IsDashEligible  int64   `json:"is_dash_eligible"`
 		Lat             float64 `json:"lat"`
 		LikeCount       int64   `json:"like_count"`
-		Likers          []struct {
+		Likers []struct {
 			FullName      string `json:"full_name"`
 			IsPrivate     bool   `json:"is_private"`
 			IsVerified    bool   `json:"is_verified"`
@@ -904,7 +904,7 @@ type ExploreItem struct {
 			ProfilePicURL string `json:"profile_pic_url"`
 			Username      string `json:"username"`
 		} `json:"likers"`
-		Lng      float64 `json:"lng"`
+		Lng float64 `json:"lng"`
 		Location struct {
 			Address          string  `json:"address"`
 			City             string  `json:"city"`
@@ -925,7 +925,7 @@ type ExploreItem struct {
 		OriginalWidth                int64  `json:"original_width"`
 		PhotoOfYou                   bool   `json:"photo_of_you"`
 		Pk                           int64  `json:"pk"`
-		PreviewComments              []struct {
+		PreviewComments []struct {
 			BitFlags        int64  `json:"bit_flags"`
 			ContentType     string `json:"content_type"`
 			CreatedAt       int64  `json:"created_at"`
@@ -937,7 +937,7 @@ type ExploreItem struct {
 			Status          string `json:"status"`
 			Text            string `json:"text"`
 			Type            int64  `json:"type"`
-			User            struct {
+			User struct {
 				FullName      string `json:"full_name"`
 				IsPrivate     bool   `json:"is_private"`
 				IsVerified    bool   `json:"is_verified"`
@@ -950,7 +950,7 @@ type ExploreItem struct {
 		} `json:"preview_comments"`
 		TakenAt   int64    `json:"taken_at"`
 		TopLikers []string `json:"top_likers"`
-		User      struct {
+		User struct {
 			FriendshipStatus struct {
 				Following       bool `json:"following"`
 				IsBestie        bool `json:"is_bestie"`
@@ -973,7 +973,7 @@ type ExploreItem struct {
 				DurationInVideoInSec  interface{} `json:"duration_in_video_in_sec"`
 				Position              []float64   `json:"position"`
 				StartTimeInVideoInSec interface{} `json:"start_time_in_video_in_sec"`
-				User                  struct {
+				User struct {
 					FullName      string `json:"full_name"`
 					IsPrivate     bool   `json:"is_private"`
 					IsVerified    bool   `json:"is_verified"`
@@ -986,7 +986,7 @@ type ExploreItem struct {
 		} `json:"usertags"`
 		VideoDashManifest string  `json:"video_dash_manifest"`
 		VideoDuration     float64 `json:"video_duration"`
-		VideoVersions     []struct {
+		VideoVersions []struct {
 			Height int64  `json:"height"`
 			ID     string `json:"id"`
 			Type   int64  `json:"type"`
@@ -998,7 +998,7 @@ type ExploreItem struct {
 	Stories struct {
 		ID         int64 `json:"id"`
 		IsPortrait bool  `json:"is_portrait"`
-		Tray       []struct {
+		Tray []struct {
 			CanReply           bool        `json:"can_reply"`
 			CanReshare         bool        `json:"can_reshare"`
 			ExpiringAt         int64       `json:"expiring_at"`
@@ -1009,7 +1009,7 @@ type ExploreItem struct {
 			ReelType           string      `json:"reel_type"`
 			Seen               float64     `json:"seen"`
 			SeenRankedPosition int64       `json:"seen_ranked_position"`
-			User               struct {
+			User struct {
 				FriendshipStatus struct {
 					Following       bool `json:"following"`
 					IncomingRequest bool `json:"incoming_request"`
@@ -1087,19 +1087,26 @@ type DirectListResponse struct {
 					ItemID    string `json:"item_id"`
 				} `json:"4178028611"`
 			} `json:"last_seen_at"`
-			ViewerID     int64            `json:"viewer_id"`
-			OldestCursor string           `json:"oldest_cursor"`
-			LeftUsers    []interface{}    `json:"left_users"`
-			ThreadID     string           `json:"thread_id"`
-			Inviter      User             `json:"inviter"`
-			ThreadTitle  string           `json:"thread_title"`
-			Items        []ItemMediaShare `json:"items"`
-			Muted        bool             `json:"muted"`
-			Pending      bool             `json:"pending"`
-			HasOlder     bool             `json:"has_older"`
-			Canonical    bool             `json:"canonical"`
-			HasNewer     bool             `json:"has_newer"`
-			Named        bool             `json:"named"`
+			ViewerID     int64         `json:"viewer_id"`
+			OldestCursor string        `json:"oldest_cursor"`
+			LeftUsers    []interface{} `json:"left_users"`
+			ThreadID     string        `json:"thread_id"`
+			Inviter      User          `json:"inviter"`
+			ThreadTitle  string        `json:"thread_title"`
+			Items []struct {
+				UserID        int64  `json:"user_id"`
+				Text          string `json:"text"`
+				ItemType      string `json:"item_type"`
+				Timestamp     int64  `json:"timestamp"`
+				ItemID        string `json:"item_id"`
+				ClientContext string `json:"client_context"`
+			} `json:"items"`
+			Muted     bool `json:"muted"`
+			Pending   bool `json:"pending"`
+			HasOlder  bool `json:"has_older"`
+			Canonical bool `json:"canonical"`
+			HasNewer  bool `json:"has_newer"`
+			Named     bool `json:"named"`
 			Users []struct {
 				Username  string `json:"username"`
 				IsPrivate bool   `json:"is_private"`
