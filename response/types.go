@@ -1094,12 +1094,33 @@ type DirectListResponse struct {
 			Inviter      User          `json:"inviter"`
 			ThreadTitle  string        `json:"thread_title"`
 			Items []struct {
-				UserID        int64  `json:"user_id"`
-				Text          string `json:"text"`
-				ItemType      string `json:"item_type"`
-				Timestamp     int64  `json:"timestamp"`
-				ItemID        string `json:"item_id"`
-				ClientContext string `json:"client_context"`
+				UserID    int64  `json:"user_id"`
+				Text      string `json:"text"`
+				ItemType  string `json:"item_type"`
+				Timestamp int64  `json:"timestamp"`
+				ItemID    string `json:"item_id"`
+				Media struct {
+					TakenAt         int    `json:"taken_at"`
+					Pk              int64  `json:"pk"`
+					ID              string `json:"id"`
+					DeviceTimestamp int64  `json:"device_timestamp"`
+					MediaType       int    `json:"media_type"`
+					Code            string `json:"code"`
+					ClientCacheKey  string `json:"client_cache_key"`
+					FilterType      int    `json:"filter_type"`
+					ImageVersions2 struct {
+						Candidates []ImageCandidate `json:"candidates"`
+					} `json:"image_versions2"`
+					OriginalWidth  int  `json:"original_width"`
+					OriginalHeight int  `json:"original_height"`
+					HasAudio       bool `json:"has_audio"`
+					VideoVersions []struct {
+						URL    string `json:"url"`
+						Type   int    `json:"type"`
+						Height int    `json:"height"`
+						Width  int    `json:"width"`
+					} `json:"video_versions"`
+				} `json:"media"`
 			} `json:"items"`
 			Muted     bool `json:"muted"`
 			Pending   bool `json:"pending"`
