@@ -393,20 +393,27 @@ type DirectThread struct {
 			IsVerified    bool   `json:"is_verified"`
 			IsPrivate     bool   `json:"is_private"`
 		} `json:"users"`
-		ViewerID         int64            `json:"viewer_id"`
-		MoreAvailableMin bool             `json:"more_available_min"`
-		ThreadID         string           `json:"thread_id"`
-		ImageVersions2   ImageVersions    `json:"image_versions2"`
-		LastActivityAt   int64            `json:"last_activity_at"`
-		NextMaxID        string           `json:"next_max_id"`
-		Canonical        bool             `json:"canonical"`
-		LeftUsers        []interface{}    `json:"left_users"`
-		NextMinID        string           `json:"next_min_id"`
-		Muted            bool             `json:"muted"`
-		Items            []ItemMediaShare `json:"items"`
-		ThreadType       string           `json:"thread_type"`
-		MoreAvailableMax bool             `json:"more_available_max"`
-		ThreadTitle      string           `json:"thread_title"`
+		ViewerID         int64         `json:"viewer_id"`
+		MoreAvailableMin bool          `json:"more_available_min"`
+		ThreadID         string        `json:"thread_id"`
+		ImageVersions2   ImageVersions `json:"image_versions2"`
+		LastActivityAt   int64         `json:"last_activity_at"`
+		NextMaxID        string        `json:"next_max_id"`
+		Canonical        bool          `json:"canonical"`
+		LeftUsers        []interface{} `json:"left_users"`
+		NextMinID        string        `json:"next_min_id"`
+		Muted            bool          `json:"muted"`
+		Items []struct {
+			UserID     int64  `json:"user_id"`
+			Text       string `json:"text"`
+			ItemType   string `json:"item_type"`
+			Timestamp  int64  `json:"timestamp"`
+			ItemID     string `json:"item_id"`
+			MediaShare Item   `json:"media_share"`
+		} `json:"items"`
+		ThreadType       string `json:"thread_type"`
+		MoreAvailableMax bool   `json:"more_available_max"`
+		ThreadTitle      string `json:"thread_title"`
 		LastSeenAt struct {
 			Num1572292791 struct {
 				ItemID    string `json:"item_id"`
