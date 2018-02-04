@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/ahmdrz/goinsta/uuid"
+	"time"
 )
 
 const (
@@ -50,4 +51,8 @@ func generateSignature(data string) string {
 		generateHMAC(data, GOINSTA_IG_SIG_KEY),
 		url.QueryEscape(data),
 	)
+}
+
+func generateUploadID() string {
+	return fmt.Sprintf("%d", time.Now().Nanosecond())
 }

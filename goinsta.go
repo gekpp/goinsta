@@ -19,6 +19,7 @@ import (
 	"time"
 
 	"github.com/gekpp/goinsta/response"
+	"strings"
 )
 
 // GetSessions return current instagram session and cookies
@@ -1174,27 +1175,25 @@ func (insta *Instagram) SearchFacebookUsers(query string) ([]byte, error) {
 
 func (insta *Instagram) DirectMessage(recipient string, message string) (response.DirectMessageResponse, error) {
 	result := response.DirectMessageResponse{}
-	recipients, err := json.Marshal([][]string{{recipient}})
-	if err != nil {
-		return result, err
-	}
 
-	var b bytes.Buffer
-	w := multipart.NewWriter(&b)
-	w.SetBoundary(insta.Informations.UUID)
-	w.WriteField("recipient_users", string(recipients))
-	w.WriteField("client_context", insta.Informations.UUID)
-	w.WriteField("thread_ids", `["0"]`)
-	w.WriteField("text", message)
-	w.Close()
+	form := url.Values{}
+	form.Add("recipient_users", recipient)
+	form.Add("client_context", insta.Informations.UUID)
+	form.Add("text", message)
+	form.Add("action", "send_item")
+	form.Add("_uuid", insta.Informations.UUID)
+	form.Add("_csrftoken", insta.Informations.Token)
 
-	req, err := http.NewRequest("POST", GOINSTA_API_URL+"direct_v2/threads/broadcast/text/", &b)
+	req, err := http.NewRequest(
+		"POST",
+		GOINSTA_API_URL+"direct_v2/threads/broadcast/text/",
+		strings.NewReader(form.Encode()))
 	if err != nil {
 		return result, err
 	}
 	req.Header.Set("Accept", "*/*")
 	req.Header.Set("Accept-Language", "en-en")
-	req.Header.Set("Content-Type", w.FormDataContentType())
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Set("Connection", "keep-alive")
 	req.Header.Set("User-Agent", GOINSTA_USER_AGENT)
 
@@ -1209,6 +1208,62 @@ func (insta *Instagram) DirectMessage(recipient string, message string) (respons
 	defer resp.Body.Close()
 
 	body, _ := ioutil.ReadAll(resp.Body)
+
+	if resp.StatusCode != 200 {
+		return result, fmt.Errorf(string(body))
+	}
+
+	json.Unmarshal(body, &result)
+	return result, nil
+}
+
+func (insta *Instagram) DirectPhoto(recipient string, file io.Reader) (response.DirectMessageResponse, error) {
+	result := response.DirectMessageResponse{}
+
+	reqBody := &bytes.Buffer{}
+	writer := multipart.NewWriter(reqBody)
+	part, err := writer.CreateFormFile("photo", "direct_temp_photo_"+generateUploadID()+".jpg")
+	if err != nil {
+		return result, err
+	}
+	_, err = io.Copy(part, file)
+	writer.WriteField("recipient_users", recipient)
+	writer.WriteField("client_context", insta.Informations.UUID)
+	writer.WriteField("action", "send_item")
+	writer.WriteField("_uuid", insta.Informations.UUID)
+	writer.WriteField("_csrftoken", insta.Informations.Token)
+	err = writer.Close()
+	if err != nil {
+		return result, err
+	}
+
+	req, err := http.NewRequest(
+		"POST",
+		GOINSTA_API_URL+"direct_v2/threads/broadcast/upload_photo/",
+		reqBody)
+	if err != nil {
+		return result, err
+	}
+	req.Header.Set("Accept", "*/*")
+	req.Header.Set("Accept-Language", "en-en")
+
+	req.Header.Set("Content-Type", writer.FormDataContentType())
+	req.Header.Set("Content-Transfer-Encoding", "binary")
+	req.Header.Set("Connection", "keep-alive")
+	req.Header.Set("User-Agent", GOINSTA_USER_AGENT)
+
+	client := &http.Client{
+		Jar: insta.Cookiejar,
+	}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return result, err
+	}
+	defer resp.Body.Close()
+
+	body, _ := ioutil.ReadAll(resp.Body)
+	fmt.Println(string(body))
 
 	if resp.StatusCode != 200 {
 		return result, fmt.Errorf(string(body))
